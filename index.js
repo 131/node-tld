@@ -2,20 +2,7 @@
 
 var url = require('url');
 
-var TLD_CACHE_JSON = 'effective_tld_names.json';
-
-
-/*
-    Tld level fetcher
-    returns an associative Hash of mozilla discovered tld and the level they belong to
-    that's the simpliest base to start a domain validator
-    Ie :
-        'jp'             => 1,
-        'ac.jp'          => 2,
-        'yokohama.jp'    => 3,
-        'metro.tokyo.jp' => 2,
-*/
-
+var TLD_CACHE_JSON = './effective_tld_names.json';
 
 var parse_url = function(remote_url){
   if(typeof remote_url == "string")
@@ -23,11 +10,10 @@ var parse_url = function(remote_url){
   return parse_host(remote_url.host);
 }
 
-
 var tlds = null;
 var parse_host = function(host){
   if(!tlds)
-    tlds = require('./effective_tld_names.json');
+    tlds = require(TLD_CACHE_JSON);
 
   var parts = host.split(".");
   var stack = "", tld_level = 1; //unknown tld are 1st level
