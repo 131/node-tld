@@ -1,7 +1,7 @@
 {
   "name": "tld-extract",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Extract the TLD/domain/subdomain parts of an URL/hostname against mozilla TLDs 'official' listing .",
   "main": "index.js",
   "scripts": {
     "update": "node update.js",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/131/node-tld.git"
   },
-  "author": "",
+  "author": "Francois Leurent <131.js@cloudyks.org>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/131/node-tld/issues"
@@ -21,5 +21,22 @@
     "expect.js": "^0.3.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+  },
+  "keywords": [
+    "tld",
+    "tlds",
+    "hostname",
+    "subdomain",
+    "domain",
+    "gtld",
+    "cctld",
+    "uri",
+    "url",
+    "parser"
+  ]
 }
