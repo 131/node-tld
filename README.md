@@ -1,6 +1,10 @@
+# Motivation
+Extract the TLD/domain/subdomain parts of an URL/hostname against mozilla TLDs 'official' listing .
+
+
 # API
 ```
-var parser = require('tld');
+var parser = require('tld-extract');
 
 console.log( parser("http://www.google.com") );
 console.log( parser("http://google.co.uk") );

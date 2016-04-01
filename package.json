@@ -1,6 +1,6 @@
 {
-  "name": "tld",
-  "version": "1.0.2",
+  "name": "tld-extract",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
