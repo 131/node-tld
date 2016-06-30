@@ -30,10 +30,15 @@ var parse = function(chain){
   var tlds = {}, splitter = new RegExp("(\\!|\\*\\.)?(.*)");
   contents.forEach(function(line){
     if(!splitter.test(line)) return;
+
     line = splitter.exec(line);
-    var tld = line[2], level = tld.split(".").length, modifier = line[1];
-    if(modifier == "*.") level ++; else if(modifier == "!") level --;
-    
+    var tld  = line[2],
+        level = tld.split(".").length,
+        modifier = line[1];
+
+    if(modifier == "*.") level ++;
+    if(modifier == "!") level --;
+
     tlds[tld] = level;
   });
   fs.writeFileSync(TLD_CACHE_JSON, JSON.stringify(tlds, null, 2));

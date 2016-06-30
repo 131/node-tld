@@ -1,3 +1,4 @@
 /test
 /effective_tld_names.dat
-
+/coverage
+/node_modules
