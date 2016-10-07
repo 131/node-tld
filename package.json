@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "update": "node update.js",
-    "test":   "istanbul cover node_modules/mocha/bin/_mocha test/"
+    "test": "node node_modules/istanbul/lib/cli.js  cover --report text-summary --report html --report lcov  node_modules/mocha/bin/_mocha",
+    "coveralls": "npm install coveralls && node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",
