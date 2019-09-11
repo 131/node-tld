@@ -1,3 +1,13 @@
+
+[![Build Status](https://travis-ci.org/131/node-tld.svg?branch=master)](https://travis-ci.org/131/node-tld)
+[![Coverage Status](https://coveralls.io/repos/github/131/node-tld/badge.svg?branch=master)](https://coveralls.io/github/131/node-tld?branch=master)
+[![Version](https://img.shields.io/npm/v/tld-extract.svg)](https://www.npmjs.com/package/tld-extract)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+[![Code style](https://img.shields.io/badge/code%2fstyle-ivs-green.svg)](https://www.npmjs.com/package/eslint-plugin-ivs)
+
+
+
+
 # Motivation
 Extract the TLD/domain/subdomain parts of an URL/hostname against mozilla TLDs 'official' listing .
 
@@ -37,6 +47,3 @@ You can update the remote hash table using `npm run update`
 
 # Credits
 * [131](https://github.com/131)
-
-[![Coverage Status](https://coveralls.io/repos/github/131/node-tld/badge.svg?branch=master)](https://coveralls.io/github/131/node-tld?branch=master)
-[![Build Status](https://travis-ci.org/131/node-tld.svg?branch=master)](https://travis-ci.org/131/node-tld)
