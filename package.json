@@ -1,6 +1,6 @@
 {
   "name": "tld-extract",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extract the TLD/domain/subdomain parts of an URL/hostname against mozilla TLDs 'official' listing .",
   "main": "index.js",
   "scripts": {
