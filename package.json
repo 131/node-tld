@@ -1,15 +1,15 @@
 {
   "name": "tld-extract",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Extract the TLD/domain/subdomain parts of an URL/hostname against mozilla TLDs 'official' listing .",
   "main": "index.js",
   "scripts": {
     "update": "node update.js",
-    "test" : "npm run eslint && npm run cover",
+    "test": "npm run eslint && npm run cover",
     "eslint": "eslint .",
     "checkall": "npm run eslint",
     "mocha": "node node_modules/mocha/bin/_mocha",
-    "cover" : "nyc --temp-directory coverage/.nyc_output --reporter text-summary --reporter html --reporter lcov  mocha",
+    "cover": "nyc --temp-directory coverage/.nyc_output --reporter text-summary --reporter html --reporter lcov  mocha",
     "coveralls": "npm install coveralls && node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info"
   },
   "repository": {
@@ -31,8 +31,7 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "keywords": [
     "tld",
     "tlds",
