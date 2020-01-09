@@ -5,8 +5,6 @@ var parse  = require('../');
 var url    = require('url');
 
 describe("Main test suite", function() {
-
-
   it("Should test parsing", function() {
     expect(parse("http://www.google.com")).to.eql({ tld : 'com', domain : 'google.com', sub : 'www' });
     expect(parse("http://free.fr")).to.eql({ tld : 'fr', domain : 'free.fr', sub : '' });
@@ -15,15 +13,11 @@ describe("Main test suite", function() {
     expect(parse("http://bar.www.google.co.uk")).to.eql({ tld : 'co.uk', domain : 'google.co.uk', sub : 'bar.www' });
     expect(parse("https://google.co.uk:8081/api/thing?q=something")).to.eql({ tld : 'co.uk', domain : 'google.co.uk', sub : '' });
 
-
     expect(parse.bind(null, "http://nowhere")).to.throwException(/Invalid TLD/);
     expect(parse("http://nowhere.local")).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
     expect(parse(url.parse("http://nowhere.local"))).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
+
+    expect(parse.bind(null, "http://nowhere.local", true)).to.throwException(/Invalid TLD/);
+    expect(parse("http://nowhere.local", false)).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
   });
-
-
-
-
-
-
 });

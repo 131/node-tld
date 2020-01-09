@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/131/node-tld",
   "devDependencies": {
-    "expect.js": "^0.3.1",
-    "nyc": "^13.0.1",
     "eslint-plugin-ivs": "^1.3.0",
-    "mocha": "^3.1.2"
+    "expect.js": "^0.3.1",
+    "mocha": "^7.0.0",
+    "nyc": "^15.0.0"
   },
   "directories": {
     "test": "test"

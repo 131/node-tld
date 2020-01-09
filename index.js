@@ -4,16 +4,18 @@ var url = require('url');
 
 var TLD_CACHE_JSON = './effective_tld_names.json';
 
-var parse_url = function(remote_url) {
+var parse_url = function(remote_url, onlyValidTLD) {
   if(typeof remote_url == "string")
     remote_url = url.parse(remote_url);
-  return parse_host(remote_url.hostname);
+  return parse_host(remote_url.hostname, onlyValidTLD);
 };
 
 var tlds = null;
-var parse_host = function(host) {
+var parse_host = function(host, onlyValidTLD) {
   if(!tlds)
     tlds = require(TLD_CACHE_JSON);
+
+  onlyValidTLD = onlyValidTLD || false;
 
   var parts = host.split(".");
   var stack = "", tldFound = false, tld_level = 1; //unknown tld are 1st level
@@ -26,7 +28,7 @@ var parse_host = function(host) {
     tld_level = tlds[stack];
   }
 
-  if(!tldFound || parts.length <= tld_level)
+  if(onlyValidTLD && !tldFound || parts.length <= tld_level)
     throw new Error("Invalid TLD");
 
   return  {

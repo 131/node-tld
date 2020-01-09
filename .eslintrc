@@ -2,5 +2,8 @@
   "root": true,
   "extends": [
     "plugin:ivs/node"
-  ]
+  ],
+  "rules": {
+    "linebreak-style": ["error", "windows"]
+  }
 }

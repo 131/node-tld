@@ -18,9 +18,14 @@ var parser = require('tld-extract');
 
 console.log( parser("http://www.google.com") );
 console.log( parser("http://google.co.uk") );
+console.log( parser("http://nowhere.local", false) );
+console.log( parser("http://nowhere.local", true) );
+
 /**
 * >> { tld: 'com', domain: 'google.com', sub: 'www' }
 * >> { tld: 'co.uk', domain: 'google.co.uk', sub: '' }
+* >> { tld: 'local', domain: 'nowhere.local', sub: '' }
+* >> Error: Invalid TLD
 */
 
 ```
