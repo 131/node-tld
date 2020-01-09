@@ -16,16 +16,17 @@ var parse_host = function(host) {
     tlds = require(TLD_CACHE_JSON);
 
   var parts = host.split(".");
-  var stack = "", tld_level = 1; //unknown tld are 1st level
+  var stack = "", tldFound = false, tld_level = 1; //unknown tld are 1st level
   for(var i = parts.length - 1, part; i >= 0; i--) {
     part = parts[i];
     stack = stack ? part + "." + stack : part;
 
     if(!tlds[stack]) break;
+    tldFound = true;
     tld_level = tlds[stack];
   }
 
-  if(parts.length <= tld_level)
+  if(!tldFound || parts.length <= tld_level)
     throw new Error("Invalid TLD");
 
   return  {
