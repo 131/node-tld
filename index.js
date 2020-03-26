@@ -2,8 +2,6 @@
 
 var url = require('url');
 
-var TLD_CACHE_JSON = './effective_tld_names.json';
-
 var parse_url = function(remote_url) {
   if(typeof remote_url == "string")
     remote_url = url.parse(remote_url);
@@ -13,7 +11,7 @@ var parse_url = function(remote_url) {
 var tlds = null;
 var parse_host = function(host) {
   if(!tlds)
-    tlds = require(TLD_CACHE_JSON);
+    tlds = require('./effective_tld_names.json');
 
   var parts = host.split(".");
   var stack = "", tld_level = 1; //unknown tld are 1st level
