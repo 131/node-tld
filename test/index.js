@@ -22,6 +22,22 @@ describe("Main test suite", function() {
   });
 
 
+  it("should test from github issues", function() {
+
+
+    var tests = [];
+
+    //.za is only level 2
+    tests.push([
+      "https://www.moneyweb.co.za/news/tech/siemens-jv-eyes-tesla-topping-battery-for-australias-grid/",
+      {tld : 'co.za', domain : 'moneyweb.co.za', sub : 'www' }
+    ]);
+
+    for(var test of tests)
+      expect(parse(test[0])).to.eql(test[1]);
+
+  });
+
 
 
 
