@@ -6,6 +6,7 @@
   "scripts": {
     "update": "node update.js",
     "test": "npm run eslint && npm run cover",
+    "preversion": "npm run test",
     "eslint": "eslint .",
     "checkall": "npm run eslint",
     "mocha": "node node_modules/mocha/bin/_mocha",

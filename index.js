@@ -21,7 +21,7 @@ var parse_host = function(host) {
     part = parts[i];
     stack = stack ? part + "." + stack : part;
     if(tlds[stack])
-      tld_level = tlds[stack]
+      tld_level = tlds[stack];
   }
 
   if(parts.length <= tld_level)
