@@ -2,7 +2,6 @@
 
 var url = require('url');
 
-var TLD_CACHE_JSON = './effective_tld_names.json';
 
 var parse_url = function(remote_url) {
   if(typeof remote_url == "string")
@@ -13,16 +12,16 @@ var parse_url = function(remote_url) {
 var tlds = null;
 var parse_host = function(host) {
   if(!tlds)
-    tlds = require(TLD_CACHE_JSON);
+    tlds = require('./effective_tld_names.json');
 
   var parts = host.split(".");
   var stack = "", tld_level = 1; //unknown tld are 1st level
+
   for(var i = parts.length - 1, part; i >= 0; i--) {
     part = parts[i];
     stack = stack ? part + "." + stack : part;
-
-    if(!tlds[stack]) break;
-    tld_level = tlds[stack];
+    if(tlds[stack])
+      tld_level = tlds[stack]
   }
 
   if(parts.length <= tld_level)
