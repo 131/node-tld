@@ -17,13 +17,26 @@ describe("Main test suite", function() {
 
 
     expect(parse.bind(null, "http://nowhere")).to.throwException(/Invalid TLD/);
-    expect(parse("http://nowhere.local")).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
-    expect(parse(url.parse("http://nowhere.local"))).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
+    expect(parse.bind(null, "http://nowhere.local")).to.throwException(/Invalid TLD/);
+
+
+    expect(parse("http://nowhere.local", {allowUnknownTLD : true})).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
+    expect(parse(url.parse("http://nowhere.local"), {allowUnknownTLD : true})).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
+  });
+
+
+  it("should test private TLDs", function() {
+    let aws_url = "http://ec2-23-20-71-128.compute-1.amazonaws.com/news/uk-news/2020/04/14/life-on-the-inside-10-ways-to-ease-an-anxious-mind-during-lockdown/";
+    expect(parse(aws_url)).to.eql({ tld : 'com', domain : 'amazonaws.com', sub : 'ec2-23-20-71-128.compute-1' });
+
+    expect(parse("http://jeanlebon.notaires.fr/")).to.eql({ tld : 'notaires.fr', domain : 'jeanlebon.notaires.fr', sub : '' });
+
+    expect(parse("http://jeanlebon.cloudfront.net")).to.eql({ tld : 'net', domain : 'cloudfront.net', sub : 'jeanlebon' });
+    expect(parse("http://jeanlebon.cloudfront.net", {allowPrivateTLD : true})).to.eql({ tld : 'cloudfront.net', domain : 'jeanlebon.cloudfront.net', sub : '' });
   });
 
 
   it("should test from github issues", function() {
-
 
     var tests = [];
 

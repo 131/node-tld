@@ -9,10 +9,11 @@
 
 
 # Motivation
-Extract the TLD/domain/subdomain parts of an URL/hostname against mozilla TLDs 'official' listing .
+Extract the TLD/domain/subdomain parts of an URL/hostname against [mozilla TLDs official listing](https://publicsuffix.org/).
 
 
 # API
+
 ```
 var parser = require('tld-extract');
 
@@ -24,6 +25,35 @@ console.log( parser("http://google.co.uk") );
 */
 
 ```
+## Private TLDs
+Private TLDs are supported, see [chromium source code for specs](https://chromium.googlesource.com/chromium/src/+/master/net/tools/tld_cleanup/tld_cleanup.cc)
+
+```
+console.log( parser("http://jeanlebon.cloudfront.net"));
+/**
+* >> { tld : 'net', domain : 'cloudfront.net', sub : 'jeanlebon' };
+*/
+
+
+console.log( parser("http://jeanlebon.cloudfront.net", {allowPrivateTLD : true}));
+/**
+* >> { tld : 'cloudfront.net', domain : 'jeanlebon.cloudfront.net', sub : '' };
+*/
+```
+
+## Unknown TLDs (level0)
+By default, unknown TLD throw an exception, you can allow them and use tld-extract as a parser using the `allowUnknownTLD` option
+
+```
+  parse("http://nowhere.local")
+    >> throws /Invalid TLD/
+
+  parse("http://nowhere.local", {allowUnknownTLD : true}))
+    >> { tld : 'local', domain : 'nowhere.local', sub : '' }
+
+```
+
+
 
 # Why
 * no dependencies

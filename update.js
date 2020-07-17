@@ -21,15 +21,39 @@ var update = function(chain) {
 };
 
 
+// ===BEGIN ICANN DOMAINS===
+// ===END ICANN DOMAINS===
+// ===BEGIN PRIVATE DOMAINS===
+// ===END PRIVATE DOMAINS===
+
 var parse = function(chain) {
   var contents = fs.readFileSync(TLD_CACHE, 'utf-8');
 
-  contents = contents.replace(new RegExp('//.*?$', 'mg'), "").trim();
-  contents = contents.split(new RegExp('[ \t\r\n]+'));
+  let section;
 
-  var tlds = {}, splitter = new RegExp("(\\!|\\*\\.)?(.*)");
-  contents.forEach(function(line) {
-    if(!splitter.test(line)) return;
+
+  const sections = new RegExp('^//\\s*===BEGIN (ICANN|PRIVATE) DOMAINS===\\s*$');
+  const comment  = new RegExp('^//.*?');
+  const splitter = new RegExp("(\\!|\\*\\.)?(.+)");
+
+  const tlds = {};
+
+  const lines = contents.split(new RegExp('[\r\n]+'));
+
+  for(let line of lines) {
+    line = line.trim();
+
+    if(sections.test(line)) {
+      section = (sections.exec(line)[1]).toLowerCase();
+      tlds[section] = {};
+      continue;
+    }
+    if(comment.test(line))
+      continue;
+    if(!splitter.test(line))
+      continue;
+    if(!section)
+      continue;
 
     line = splitter.exec(line);
     var tld  = line[2],
@@ -39,8 +63,12 @@ var parse = function(chain) {
     if(modifier == "*.") level++;
     if(modifier == "!") level--;
 
-    tlds[tld] = level;
-  });
+    tlds[section][tld] = level;
+  }
+
+  if(!(tlds.icann && tlds.private))
+    throw `Error in TLD parser`;
+
   fs.writeFileSync(TLD_CACHE_JSON, JSON.stringify(tlds, null, 2));
   chain();
 
