@@ -6,6 +6,10 @@ var url = require('url');
 var parse_url = function(remote_url, options) {
   if(typeof remote_url == "string")
     remote_url = url.parse(remote_url);
+
+  if (remote_url.hostname === null)
+    return parse_url('http://' + remote_url.href);
+
   return parse_host(remote_url.hostname, options);
 };
 

@@ -35,6 +35,10 @@ describe("Main test suite", function() {
     expect(parse("http://jeanlebon.cloudfront.net", {allowPrivateTLD : true})).to.eql({ tld : 'cloudfront.net', domain : 'jeanlebon.cloudfront.net', sub : '' });
   });
 
+  it("should parse url strings without protocol", function() {
+    expect(parse("jeanlebon.notaires.fr")).to.eql({ tld : 'notaires.fr', domain : 'jeanlebon.notaires.fr', sub : '' });
+    expect(parse('google.com')).to.eql({ tld : 'com', domain : 'google.com', sub : '' });
+  });
 
   it("should test from github issues", function() {
 
