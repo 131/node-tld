@@ -22,6 +22,8 @@ describe("Main test suite", function() {
 
     expect(parse("http://nowhere.local", {allowUnknownTLD : true})).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
     expect(parse(url.parse("http://nowhere.local"), {allowUnknownTLD : true})).to.eql({ tld : 'local', domain : 'nowhere.local', sub : '' });
+
+    expect(parse('http://zhitomir.ua')).to.eql({ tld : 'zhitomir.ua', domain : 'zhitomir.ua', sub : '' });
   });
 
 
