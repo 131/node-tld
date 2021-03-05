@@ -10,24 +10,23 @@
     "eslint": "eslint .",
     "checkall": "npm run eslint",
     "mocha": "node node_modules/mocha/bin/_mocha",
-    "cover": "nyc --temp-directory coverage/.nyc_output --reporter text-summary --reporter html --reporter lcov  mocha",
-    "coveralls": "npm install coveralls && node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info"
+    "cover": "nyc mocha"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/131/node-tld.git"
   },
-  "author": "Francois Leurent <131.js@cloudyks.org>",
+  "author": "Francois Leurent <131.code@leurent.email>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/131/node-tld/issues"
   },
   "homepage": "https://github.com/131/node-tld",
   "devDependencies": {
-    "expect.js": "^0.3.1",
-    "nyc": "^13.0.1",
     "eslint-plugin-ivs": "^1.3.0",
-    "mocha": "^3.1.2"
+    "expect.js": "^0.3.1",
+    "mocha": "^3.1.2",
+    "nyc": "^15.1.0"
   },
   "directories": {
     "test": "test"

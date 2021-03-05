@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/131/node-tld.svg?branch=master)](https://travis-ci.org/131/node-tld)
+[![Build Status](https://github.com/131/node-tld/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/131/node-tld/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/131/node-tld/badge.svg?branch=master)](https://coveralls.io/github/131/node-tld?branch=master)
 [![Version](https://img.shields.io/npm/v/tld-extract.svg)](https://www.npmjs.com/package/tld-extract)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
