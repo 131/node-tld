@@ -35,7 +35,7 @@ var parse_host = function(host, options) {
   if(tld_level == -1 && allowUnknownTLD)
     tld_level = 1;
 
-  if(parts.length <= tld_level || tld_level == -1)
+  if(parts.length < tld_level || tld_level == -1)
     throw new Error("Invalid TLD " + JSON.stringify({parts, tld_level, allowUnknownTLD}));
 
   return  {
