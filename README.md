@@ -61,6 +61,7 @@ By default, unknown TLD throw an exception, you can allow them and use tld-extra
 * full code coverage
 * easy to read (10 lines)
 * easily updatable vs mozilla TLDs source list
+* TypeScript support
 
 # Maintenance
 You can update the remote hash table using `npm run update`
