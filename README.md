@@ -53,6 +53,22 @@ By default, unknown TLD throw an exception, you can allow them and use tld-extra
 
 ```
 
+## DotLess domain
+Using a tld as a direct domain name, or [dotless domain](https://en.wikipedia.org/wiki/Top-level_domain#Dotless_domains) is highly not recommended (ICANN and IAB have spoken out against the practice, classifying it as a security risk among other concerns.[34] ICANN's Security and Stability Advisory Committee (SSAC) additionally claims that SMTP "requires at least two labels in the FQDN of a mail address" and, as such, mail servers would reject emails to addresses with dotless domains), and will throw an error in `tld-extract`. You can override this behavior using the `allowDotlessTLD` option.
+
+
+```
+  parse("http://notaires.fr")
+    >> throws /Invalid TLD/
+
+  parse("http://notaires.fr", {allowDotlessTLD : true}))
+    >> { tld : 'notaires.fr', domain : 'notaires.fr', sub : '' }
+
+```
+
+
+
+
 
 
 # Why

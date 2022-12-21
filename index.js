@@ -14,6 +14,7 @@ var tlds = null;
 var parse_host = function(host, options) {
   let allowPrivateTLD = options && options.allowPrivateTLD || false;
   let allowUnknownTLD = options && options.allowUnknownTLD || false;
+  let allowDotlessTLD = options && options.allowDotlessTLD || false;
 
   if(!tlds) {
     tlds = require('./effective_tld_names.json');
@@ -35,8 +36,13 @@ var parse_host = function(host, options) {
   if(tld_level == -1 && allowUnknownTLD)
     tld_level = 1;
 
-  if(parts.length <= tld_level || tld_level == -1)
-    throw new Error("Invalid TLD " + JSON.stringify({parts, tld_level, allowUnknownTLD}));
+
+
+  if(parts.length <= tld_level || tld_level == -1) {
+    if(!(parts.length == tld_level && allowDotlessTLD))
+      throw new Error("Invalid TLD " + JSON.stringify({parts, tld_level, allowUnknownTLD}));
+
+  }
 
   return  {
     tld     : parts.slice(-tld_level).join('.'),

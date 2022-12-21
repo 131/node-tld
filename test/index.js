@@ -36,6 +36,11 @@ describe("Main test suite", function() {
   });
 
 
+  it("should allow non strict tld rules", function() {
+    expect(() => parse("http://notaires.fr/")).to.throwException(/Invalid TLD/);
+    expect(parse("http://notaires.fr/", {allowDotlessTLD : true})).to.eql({ tld : 'notaires.fr', domain : 'notaires.fr', "sub" : ''});
+  });
+
   it("should test from github issues", function() {
 
     var tests = [];
