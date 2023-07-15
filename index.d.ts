@@ -10,6 +10,13 @@ interface ParseOptions {
    * @note This option can also be used when parsing URLs that contain IP addresses.
    */
   allowUnknownTLD?: boolean;
+  /**
+   * Allow parsing URLs that contain a top-level domain (TLD) used as a direct domain name,
+   * also known as a dotless domain.
+   *
+   * @note Using dotless domains is highly not recommended by ICANN and IAB. Use with caution.
+   */
+  allowDotlessTLD?: boolean;
 }
 
 interface ParseResult {
