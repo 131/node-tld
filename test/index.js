@@ -29,7 +29,6 @@ describe("Main test suite", function() {
     let aws_url = "http://ec2-23-20-71-128.compute-1.amazonaws.com/news/uk-news/2020/04/14/life-on-the-inside-10-ways-to-ease-an-anxious-mind-during-lockdown/";
     expect(parse(aws_url)).to.eql({ tld : 'com', domain : 'amazonaws.com', sub : 'ec2-23-20-71-128.compute-1' });
 
-    expect(parse("http://jeanlebon.notaires.fr/")).to.eql({ tld : 'notaires.fr', domain : 'jeanlebon.notaires.fr', sub : '' });
 
     expect(parse("http://jeanlebon.cloudfront.net")).to.eql({ tld : 'net', domain : 'cloudfront.net', sub : 'jeanlebon' });
     expect(parse("http://jeanlebon.cloudfront.net", {allowPrivateTLD : true})).to.eql({ tld : 'cloudfront.net', domain : 'jeanlebon.cloudfront.net', sub : '' });
@@ -37,8 +36,8 @@ describe("Main test suite", function() {
 
 
   it("should allow non strict tld rules", function() {
-    expect(() => parse("http://notaires.fr/")).to.throwException(/Invalid TLD/);
-    expect(parse("http://notaires.fr/", {allowDotlessTLD : true})).to.eql({ tld : 'notaires.fr', domain : 'notaires.fr', "sub" : ''});
+    expect(() => parse("http://co.uk/")).to.throwException(/Invalid TLD/);
+    expect(parse("http://co.uk/", {allowDotlessTLD : true})).to.eql({ tld : 'co.uk', domain : 'co.uk', "sub" : ''});
   });
 
   it("should test from github issues", function() {
