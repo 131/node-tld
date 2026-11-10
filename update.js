@@ -14,7 +14,7 @@ var update = function(chain) {
   var dest = fs.createWriteStream(TLD_CACHE);
   https.get(REMOTE_TLD_URL, function(res) {
     res.pipe(dest);
-    res.on("end", function() {
+    dest.on("finish", function() {
       parse(chain);
     });
   });
